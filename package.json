@@ -1,6 +1,6 @@
 {
   "name": "eappraise",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -15,5 +15,8 @@
     "mongoose": "^4.6.3",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+    "engines": {
+      "node": "4.1.1"
+    }
 }
