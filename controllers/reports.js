@@ -14,12 +14,15 @@ function getAll(req, res, next) {
 //POST one report
 function addOne(req, res, next) {
   var report = new Report();
-  report.address = req.body.address;
-  report.rent = req.body.rent;
-  report.total_value = req.body.total_value;
-  report.email= req.body.email;
+  report.email = req.body.email;
   report.phone = req.body.phone;
-
+  report.address1 = req.body.address1;
+  report.address2= req.body.address2;
+  report.address = req.body.address;
+  report.zip_code = req.body.zip_code;
+  report.city = req.body.city;
+  report.state = req.body.state;
+  report.gross_rent = req.body.gross_rent;
 
   report.save(function(err, report) {
     if (err) throw err;
@@ -46,11 +49,15 @@ function changeOne(request, response) {
 
   Report.findById({_id:id}, function(error, report) {
     if(error) response.json({message: 'Could not find report b/c:' + error});
-    if(request.body.address) report.address = request.body.address ;
-    if(request.body.rent) report.rent = request.body.rent;
-    if(request.body.total_value) report.total_value= request.body.total_value;
-    if(request.body.email) report.email = request.body.email;
+    if(request.body.email) report.email= request.body.email ;
     if(request.body.phone) report.phone = request.body.phone;
+    if(request.body.address1) report.address1= request.body.address1;
+    if(request.body.address2) report.address2 = request.body.address2;
+    if(request.body.address) report.address = request.body.address;
+    if(request.body.zip_code) report.zip_code= request.body.zip_code;
+    if(request.body.city) report.city = request.body.city;
+    if(request.body.state) report.state = request.body.state;
+    if(request.body.gross_rent) report.gross_rent= request.body.gross_rent;
 
 
     report.save(function(error) {
