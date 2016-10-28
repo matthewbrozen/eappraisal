@@ -14,10 +14,13 @@ var reports = require('./routes/reports');
 //express set up
 var app = express();
 
+
+
 //mongoose set up
 
 var db = process.env.MONGODB_URI || 'mongodb://localhost:27017/eappraiseapi';
 mongoose.connect(db)
+mongoose.Promise = global.Promise;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
