@@ -1,6 +1,6 @@
 //requirements
 var Report = require('../models/report');
-
+var nodemailer = require('nodemailer');
 
 //GET all reports
 function getAll(req, res, next) {
@@ -24,10 +24,44 @@ function addOne(req, res, next) {
   report.state = req.body.state;
   report.gross_rent = req.body.gross_rent;
 
-  report.save(function(err, report) {
-    if (err) throw err;
-      res.json(report);
-  });
+  report.save()
+  .then(function(newProperty) {
+        var sendMailTo = function(req, res, next){
+          var transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'mintthaiservice@gmail.com',
+              pass: 'scoobymint1'
+            }
+          });
+
+          var mailOptions = {
+            from: 'TESTING <matthewbrozen@gmail.com>',
+            to:   'mintthaiservice@gmail.com',
+            subject: 'You have a client interested in selling their property',
+            text: 'You have an order with the following details... Order: ' + newProperty,
+            html: '<p>You have an order with the following details...</p>' + newProperty
+          };
+
+          transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+              console.log(error);
+            } else {
+              console.log("Message Sent: " +info.response);
+            }
+          })
+        };
+      res.json(newProperty);
+      sendMailTo();
+    })
+    .catch(function(err) {
+      if (err.message.match(/E11000/)) {
+        err.status = 409;
+      } else {
+        err.status = 422;
+      }
+      next(err);
+    });
 }
 
 

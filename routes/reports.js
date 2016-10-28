@@ -5,7 +5,7 @@ var router = express.Router();
 //requirements
 var reportsController = require('../controllers/reports')
 
-//cors header
+// cors header
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE');
