@@ -1,4 +1,4 @@
-//requirements
+//  requirements
 var Report = require('../models/report');
 var nodemailer = require('nodemailer');
 
@@ -26,6 +26,7 @@ function addOne(req, res, next) {
 
   report.save()
   .then(function(newProperty) {
+    //nodemailer set up on report save
         var sendMailTo = function(req, res, next){
           var transporter = nodemailer.createTransport({
             service: 'Gmail',

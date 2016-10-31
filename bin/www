@@ -12,6 +12,8 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 var port = process.env.PORT || '3000';
+
+//use production mongo db or local db
 var db = process.env.MONGODB_URI || 'mongodb://localhost:27017/eappraiseapi';
 
 app.set('port', port);

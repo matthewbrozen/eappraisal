@@ -43,26 +43,35 @@ a:hover, a:active {
         <h5> This is for returning every entry from the database</h5>
           <p>{
                 "allReports": [
+                {
+                  "__v": 0,
+                  "gross_rent": 25000,
+                  "address": "2247 29th st. santa monica ca 90405",
+                  "address2": "santa monica ca 90405",
+                  "address1": "2247 29th st.",
+                  "phone": "5555555555",
+                  "email": "joe@gmail.com",
+                  "_id": "5813e218c1dec40c5156a128"
+                },<br>
                   {
-                    "_id": "580905b7c1a284069a0741d9",
-                    "email": "joe@gmail.com",
-                    "rent": 10000,
-                    "address": "123 fake st. ",
-                    "__v": 0
-                  },
-                  {
-                    "_id": "580905cdc1a284069a0741da",
+                    "__v": 0,
+                    "gross_rent": 35000,
+                    "address": "540 n rossmore avenue los angeles ca 90006",
+                    "address2": "los angeles ca 90006",
+                    "address1": "540 n rossmore avenue",
+                    "phone": "4444444444",
                     "email": "jim@gmail.com",
-                    "rent": 2000,
-                    "address": "456 easy st.",
-                    "__v": 0
-                  },
+                    "_id": "5813e218c1dec40c5156a325"
+                  },<br>
                   {
-                    "_id": "580905e0c1a284069a0741db",
-                    "email": "george@gmail.com",
-                    "rent": 30000,
-                    "address": "789 main st.",
-                    "__v": 0
+                    "__v": 0,
+                    "gross_rent": 45000,
+                    "address": "123 fake st. fake city fake state 00000",
+                    "address2": "fake city fake state 00000",
+                    "address1": "123 fake st.",
+                    "phone": "3333333333,
+                    "email": "carl@gmail.com",
+                    "_id": "5813e218c1dec40c5156a632"
                   }
                 ]
               }
@@ -81,14 +90,17 @@ a:hover, a:active {
             <div id="getone" class="nonnav"><h2> Get one report GET /reports/:id </h2>
               <h5> This is for returning one entry from the database</h5>
                       <p>{
-                          "report": {
-                            "_id": "580905b7c1a284069a0741d9",
-                            "email": "joe@gmail.com",
-                            "rent": 10000,
-                            "address": "123 fake st. ",
-                            "__v": 0
+                            "report": {
+                              "_id": "5813e218c1dec40c5156a128",
+                              "gross_rent": 25000,
+                              "address": "2247 29th st. santa monica ca 90405",
+                              "address2": "santa monica ca 90405",
+                              "address1": "2247 29th st.",
+                              "phone": "5555555555",
+                              "email": "joe@gmail.com",
+                              "__v": 0
+                            }
                           }
-                        }
                         </p>
                         <div class="masthead">
                             <ul style="list-style: none;" class="nav nav-pills pull-right">
@@ -104,12 +116,15 @@ a:hover, a:active {
               <div id="post" class="nonnav"><h2> Post a report POST /reports </h2>
                     <h5> This is for posting one entry into the database</h5>
                     <p>{
-                        "newReport": {
-                          "__v": 0,
-                          "email": "john@gmail.com",
-                          "rent": 40000,
-                          "address": "5123 grand st.",
-                          "_id": "58090643c1a284069a0741dc"
+                        "newReport": {<br>
+                          "_id": "5813e218c1dec40c5156a128",
+                          "gross_rent": 25000,
+                          "address": "2247 29th st. santa monica ca 90405",
+                          "address2": "santa monica ca 90405",
+                          "address1": "2247 29th st.",
+                          "phone": "5555555555",
+                          "email": "joe@gmail.com",
+                          "__v": 0
                                       }
                         }
                       </p>
@@ -128,15 +143,17 @@ a:hover, a:active {
               <div id="patch" class="nonnav">  <h2> Patch to a report PATCH /reports/:id </h2>
                   <h5> This is for updating one entry from the database</h5>
                   <p>{
-                      "message": "Report successfully updated",
-                      "report": {
-                        "phone": 555555555,
-                        "_id": "58090643c1a284069a0741dc",
-                        "email": "john@gmail.com",
-                        "rent": 40000,
-                        "address": "5123 grand st.",
-                        "__v": 0
-                                }
+                        "message": "Report successfully updated",<br>
+                        "report": {
+                          "_id": "5813e218c1dec40c5156a128",
+                          "gross_rent": 25000,
+                          "address": "2247 29th st. santa monica ca 90405",
+                          "address2": "santa monica ca 90405",
+                          "address1": "2247 29th st.",
+                          "phone": "5555555555",
+                          "email": "matt@gmail.com",
+                          "__v": 0
+                        }
                       }
                     </p>
                     <div class="masthead">
