@@ -3,24 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <title>Eappraise API</title>
-  <style>body{background-color:#F2552C; text-align:center;}h1{font-size:100px;}h2{font-size:80px;}.nonnav{margin:100px; padding:100px;}li{display: inline;padding:8px; font-family: 'Open Sans', sans-serif;  }a:link, a:visited {
+  <style>
+
+
+  body{
+    background-color:#F2552C; text-align:center;
+  }
+
+  h1{
+    font-size:100px;
+    }
+
+  h2{
+    font-size:80px;
+  }
+
+  .nonnav{
+    margin:100px;
+    padding:100px;
+  }
+
+  li{
+    display: inline;
+    padding:8px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  a:link, a:visited {
     background-color: blue;
     color: white;
     padding: 14px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-}
+  }
 
-a:hover, a:active {
+  a:hover, a:active {
     background-color: aqua;
-}</style>
-  <script> $('ul.nav').find('a').click(function(){
+  }
+
+</style>
+
+  <script>
+  $('ul.nav').find('a').click(function(){
     var $href = $(this).attr('href');
     var $anchor = $('#'+$href).offset();
     window.scrollTo($anchor.left,$anchor.top);
     return false;
-});</script>
+  });
+</script>
 </head>
 <body>
     <h1> Eappraise API </h1><hr>
