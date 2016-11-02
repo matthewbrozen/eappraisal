@@ -33,8 +33,8 @@ function addOne (req, res, next) {
         from: 'TESTING <matthewbrozen@gmail.com>',
         to: 'propertyeappraisal@gmail.com',
         subject: 'You have a client interested in selling their property',
-        text: 'You have a client interested in selling their property... Order: ' + newProperty.gross_rent + newProperty.address + newProperty.email,
-        html: '<p>you have a client interested in selling their property with the following details...</p>' + + newProperty.gross_rent + newProperty.address + newProperty.email
+        text: 'You have a client interested in selling their property... Order: ' + " rent: " + newProperty.gross_rent + " address: " + newProperty.address + " email: " + newProperty.email,
+        html: '<p>you have a client interested in selling their property with the following details...</p>' + " rent " + newProperty.gross_rent + " address: " + newProperty.address + " email: " + newProperty.email
       }
 
       transporter.sendMail(mailOptions, function (error, info) {
