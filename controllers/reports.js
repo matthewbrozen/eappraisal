@@ -30,8 +30,8 @@ function addOne (req, res, next) {
       })
 
       var mailOptions = {
-        from: 'TESTING <matthewbrozen@gmail.com>',
-        to: 'propertyeappraisal@gmail.com',
+        from: 'Interested Seller <propertyeappraisal@gmail.com>',
+        to: 'david@valueegg.com',
         subject: 'You have a client interested in selling their property',
         text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email,
         html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email
