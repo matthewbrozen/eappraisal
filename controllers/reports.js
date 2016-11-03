@@ -20,7 +20,7 @@ function addOne (req, res, next) {
   report.phone = req.body.phone
 
   report.save()
-  .then(function (newProperty) {
+  .then(function (newReport) {
     // nodemailer set up on report save
     var sendMailTo = function (req, res, next) {
       var transporter = nodemailer.createTransport({
@@ -35,8 +35,8 @@ function addOne (req, res, next) {
         from: 'Interested Seller <propertyeappraisal@gmail.com>',
         to: 'propertyeappraisal@gmail.com',
         subject: 'You have a client interested in selling their property',
-        text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email + ", They selected agent: " + newProperty.agent + ", They selected agent: " + newProperty.agent
-        html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email + ", They selected agent: " + newProperty.agent + ", They selected agent: " + newProperty.agent
+        text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newReport.gross_rent + ",    Address is:   " + newReport.address + ",    Email is:    " + newReport.email + ", They selected agent: " + newReport.agent + ", They selected agent: " + newReport.phone
+        html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newReport.gross_rent + ",    Address is:   " + newReport.address + ",    Email is:    " + newReport.email + ", They selected agent: " + newReport.agent + ", They selected agent: " + newReport.phone
       }
 
       transporter.sendMail(mailOptions, function (error, info) {
