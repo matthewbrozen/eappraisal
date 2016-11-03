@@ -16,6 +16,7 @@ function addOne (req, res, next) {
   report.email = req.body.email
   report.address = req.body.address
   report.gross_rent = req.body.gross_rent
+  report.agent = req.body.agent
 
   report.save()
   .then(function (newProperty) {
@@ -33,8 +34,8 @@ function addOne (req, res, next) {
         from: 'Interested Seller <propertyeappraisal@gmail.com>',
         to: 'david@valueegg.com',
         subject: 'You have a client interested in selling their property',
-        text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email,
-        html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email
+        text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email + ", They selected agent: " + newProperty.agent,
+        html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email + ", They selected agent: " + newProperty.agent
       }
 
       transporter.sendMail(mailOptions, function (error, info) {
@@ -78,6 +79,7 @@ function changeOne (request, response) {
     if (request.body.email) report.email = request.body.email
     if (request.body.address) report.address = request.body.address
     if (request.body.gross_rent) report.gross_rent = request.body.gross_rent
+    if (request.body.agent) report.agent = request.body.agent
 
     report.save(function (error) {
       if (error) response.json({messsage: 'Could not update report b/c:' + error})
