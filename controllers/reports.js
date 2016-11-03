@@ -17,6 +17,7 @@ function addOne (req, res, next) {
   report.address = req.body.address
   report.gross_rent = req.body.gross_rent
   report.agent = req.body.agent
+  report.phone = req.body.phone
 
   report.save()
   .then(function (newProperty) {
@@ -32,7 +33,7 @@ function addOne (req, res, next) {
 
       var mailOptions = {
         from: 'Interested Seller <propertyeappraisal@gmail.com>',
-        to: 'david@valueegg.com',
+        to: 'propertyeappraisal@gmail.com',
         subject: 'You have a client interested in selling their property',
         text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email + ", They selected agent: " + newProperty.agent,
         html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newProperty.gross_rent + ",    Address is:   " + newProperty.address + ",    Email is:    " + newProperty.email + ", They selected agent: " + newProperty.agent
@@ -80,6 +81,7 @@ function changeOne (request, response) {
     if (request.body.address) report.address = request.body.address
     if (request.body.gross_rent) report.gross_rent = request.body.gross_rent
     if (request.body.agent) report.agent = request.body.agent
+    if (request.body.phone) report.phone = request.body.phone
 
     report.save(function (error) {
       if (error) response.json({messsage: 'Could not update report b/c:' + error})
