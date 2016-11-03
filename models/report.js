@@ -5,7 +5,7 @@ var reportSchema = mongoose.Schema({
   address: String,
   gross_rent: Number,
   agent: String,
-  phone: String
+  phone: Number
 })
 
 var Report = mongoose.model('Report', reportSchema)
