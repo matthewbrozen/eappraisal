@@ -47,7 +47,7 @@ function addOne (req, res, next) {
         }
       })
     }
-    res.json(newProperty)
+    res.json(newReport)
     sendMailTo()
   })
     .catch(function (err) {
