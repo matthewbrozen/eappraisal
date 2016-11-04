@@ -28,7 +28,7 @@ function addOne (req, res, next) {
   report.agent = req.body.agent
   report.phone = req.body.phone
 
-  var egg = (((report.gross_rent * 12)*.65)/.04);
+  var egg = ((((report.gross_rent * 12)*.65)/.04)*.7);
 
   report.save()
   .then(client.messages.create({
