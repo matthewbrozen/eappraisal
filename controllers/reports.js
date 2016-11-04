@@ -2,6 +2,15 @@
 var Report = require('../models/report')
 var nodemailer = require('nodemailer')
 
+
+// Twilio Credentials
+var accountSid = 'AC9eb5b40ff90b70c3b03de0caaaa8cb72';
+var authToken = '15a80220b318334bddd72eae2d942383';
+
+//require the Twilio module and create a REST client
+var client = require('twilio')(accountSid, authToken);
+
+
 // GET all reports
 function getAll (req, res, next) {
   Report.find({}, function (err, reports) {
@@ -18,9 +27,17 @@ function addOne (req, res, next) {
   report.gross_rent = req.body.gross_rent
   report.agent = req.body.agent
   report.phone = req.body.phone
-  var egg = report.gross_rent * 10;
+
+  var egg = (((report.gross_rent * 12)*.65)/.04);
 
   report.save()
+  .then(client.messages.create({
+      to: report.phone,
+      from: "+17633163360",
+      body: "Your Cash Offer is " + egg + " Call hot line 612-889-3535 with this code 1234 if interested",
+  }, function(err, message) {
+      console.log(message.sid);
+  }))
   .then(function (newReport) {
     // nodemailer set up on report save
     var sendMailTo = function (req, res, next) {
@@ -46,36 +63,10 @@ function addOne (req, res, next) {
           console.log('Message Sent: ' + info.response)
         }
       })
-
-
-      var mailOptions = {
-        from: 'ValueEgg <propertyeappraisal@gmail.com>',
-        to: report.phone + '@txt.att.net, ' + report.phone + '@tmomail.net, ' + report.phone + '@vmobl.com, ' + report.phone + '@messaging.sprintpcs.com, ' + report.phone + '@vtext.com ',
-        subject: 'ValueEgg Cash Offer',
-        text: "Cash Offer Placeholder",
-        html: '<p>Cash Offer Placeholder</p>'
-      }
-
-
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error)
-        } else {
-          console.log('Message Sent: ' + info.response)
-        }
-      })
     }
     res.json(newReport)
     sendMailTo()
   })
-      .catch(function (err) {
-        if (err.message.match(/E11000/)) {
-          err.status = 409
-        } else {
-          err.status = 422
-        }
-        next(err)
-      })
       .catch(function (err) {
         if (err.message.match(/E11000/)) {
           err.status = 409
