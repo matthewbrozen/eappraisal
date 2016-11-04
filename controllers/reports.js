@@ -36,7 +36,7 @@ function addOne (req, res, next) {
       from: "+17633163360",
       body: "Your Cash Offer is " + egg + " Call hot line 612-889-3535 with this code 1234 if interested",
   }, function(err, message) {
-      console.log(message.sid);
+
   }))
   .then(function (newReport) {
     // nodemailer set up on report save
