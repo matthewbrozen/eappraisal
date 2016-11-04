@@ -1,5 +1,5 @@
 // required dependencies
-var express = require('express')
+var express = require('express');
 var path = require('path')
 var favicon = require('serve-favicon')
 var logger = require('morgan')
@@ -12,7 +12,7 @@ var users = require('./routes/users')
 var reports = require('./routes/reports')
 
 // express set up
-var app = express()
+var app = express();
 
 // mongoose set up
 
