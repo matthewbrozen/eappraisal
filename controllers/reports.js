@@ -18,6 +18,7 @@ function addOne (req, res, next) {
   report.gross_rent = req.body.gross_rent
   report.agent = req.body.agent
   report.phone = req.body.phone
+  var egg = report.gross_rent * 10;
 
   report.save()
   .then(function (newReport) {
@@ -33,11 +34,28 @@ function addOne (req, res, next) {
 
       var mailOptions = {
         from: 'Interested Seller <propertyeappraisal@gmail.com>',
-        to: 'propertyeappraisal@gmail.com',
+        to: 'matthewbrozen@gmail.com',
         subject: 'You have a client interested in selling their property',
         text: 'You have a client interested in selling their property... Order: ' + " Rent is:  " + newReport.gross_rent + ",    Address is:   " + newReport.address + ",    Email is:    " + newReport.email + newReport.agent + ", Phone number is: " + newReport.phone + ", Agent selected is: " + newReport.agent,
         html: '<p>you have a client interested in selling their property with the following details...</p>' + " Rent is:  " + newReport.gross_rent + ",    Address is:   " + newReport.address + ",    Email is:    " + newReport.email + ", Phone number is: " + newReport.phone+ ", Agent selected is: " + newReport.agent
       }
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log('Message Sent: ' + info.response)
+        }
+      })
+
+
+      var mailOptions = {
+        from: 'ValueEgg <propertyeappraisal@gmail.com>',
+        to: report.phone + '@txt.att.net, ' + report.phone + '@tmomail.net, ' + report.phone + '@vmobl.com, ' + report.phone + '@messaging.sprintpcs.com, ' + report.phone + '@vtext.com ',
+        subject: 'ValueEgg Cash Offer',
+        text: "Cash Offer Placeholder",
+        html: '<p>Cash Offer Placeholder</p>'
+      }
+
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -50,14 +68,22 @@ function addOne (req, res, next) {
     res.json(newReport)
     sendMailTo()
   })
-    .catch(function (err) {
-      if (err.message.match(/E11000/)) {
-        err.status = 409
-      } else {
-        err.status = 422
-      }
-      next(err)
-    })
+      .catch(function (err) {
+        if (err.message.match(/E11000/)) {
+          err.status = 409
+        } else {
+          err.status = 422
+        }
+        next(err)
+      })
+      .catch(function (err) {
+        if (err.message.match(/E11000/)) {
+          err.status = 409
+        } else {
+          err.status = 422
+        }
+        next(err)
+      })
 }
 
 // GET one report
