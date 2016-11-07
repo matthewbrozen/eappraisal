@@ -1,10 +1,17 @@
 //  requirements
 var Report = require('../models/report')
 var nodemailer = require('nodemailer')
+var dotenv = require('dotenv')
 
-// Twilio Credentials
-var accountSid = 'AC9eb5b40ff90b70c3b03de0caaaa8cb72'
-var authToken = '15a80220b318334bddd72eae2d942383'
+require('dotenv').load();
+
+// Credentials
+var accountSid = (process.env.accountSid)
+var authToken = (process.env.authToken)
+var twilnum = (process.env.twilnum)
+var emailsetup = (process.env.emailsetup)
+var emailcred= (process.env.emailcred)
+
 
 // require the Twilio module and create a REST client
 var client = require('twilio')(accountSid, authToken)
@@ -31,7 +38,7 @@ function addOne (req, res, next) {
   report.save()
   .then(client.messages.create({
     to: report.phone,
-    from: '+17633163360',
+    from: twilnum,
     body: 'Your Cash Offer is ' + egg + ' Call hot line 612-889-3535 with this code 1234 if interested'
   }, function (err, message) {
     if (err) {
@@ -44,14 +51,14 @@ function addOne (req, res, next) {
       var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'propertyeappraisal@gmail.com',
-          pass: '540nrossmore'
+          user: emailsetup,
+          pass: emailcred
         }
       })
 
       var mailOptions = {
-        from: 'Interested Seller <propertyeappraisal@gmail.com>',
-        to: 'propertyeappraisal@gmail.com',
+        from: 'Interested Seller <'+emailsetup+'>',
+        to: emailsetup,
         subject: 'You have a client interested in selling their property',
         text: 'You have a client interested in selling their property... Order: ' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + newReport.agent + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent,
         html: '<p>you have a client interested in selling their property with the following details...</p>' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent
