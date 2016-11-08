@@ -55,91 +55,21 @@
 </script>
 </head>
 <body>
-    <h1> Eappraise API </h1><hr>
-    <p> Eappraise API is a standard RESTful API. The URL for specifc requests are documented below along with a description of expected return. API has CORS enabled</p><hr>
+    <h1> ValueEgg API </h1><hr>
+    <p> ValueEgg API is used for POSTING reports. The URL for specifc requests are documented below along with a description of expected return. API has CORS enabled</p><hr>
 
       <h2> RESTful routes </h2><hr>
     <div id="top>"
       <div class="masthead">
           <ul style="list-style: none;" class="nav nav-pills pull-right">
-              <li><a href="#getall">GET ALL route</a></li>
-              <li><a href="#getone">GET ONE route</a></li>
+
               <li><a href="#post">POST route</a></li>
-              <li><a href="#patch">PATCH route</a></li>
-              <li><a href="#delete">DELETE route</a></li>
+
             </ul>
       </div>
     </div><hr>
 
-    <div id="getall" class="nonnav">  <h2> Get all reports GET /reports </h2>
-        <h5> This is for returning every entry from the database</h5>
-          <p>{
-                "allReports": [
-                {
-                  "_id": "581cd1e5d4024538b80408a9",
-                  "phone": 6128036431,
-                  "agent": "david",
-                  "gross_rent": 20000,
-                  "address": "1455 Laveta Terrace Los Angeles, CA 90026",
-                  "email": "jim@gmail.com",
-                  "__v": 0
-                },<br>
-                {
-                  "_id": "5820d1b4894cb20003f43ce4",
-                  "phone": 21856421412,
-                  "agent": "Christof",
-                  "gross_rent": 30000,
-                  "address": "1449 Lake Shore Ave, Los Angeles, CA 90026",
-                  "email": "kevin@gmail.com",
-                  "__v": 0
-                },<br>
-                {
-                  "_id": "5820e516894cb20003f43d03",
-                  "phone": 9528541412,
-                  "agent": "Tati",
-                  "gross_rent": 40000,
-                  "address": "2113 Vestal Ave Los Angeles, CA 90026",
-                  "email": "troy@gmail.com",
-                  "__v": 0
-                }
-                ]
-              }
-          </p>
-          <div class="masthead">
-              <ul style="list-style: none;" class="nav nav-pills pull-right">
-                  <li><a href="#getone">GET ONE route</a></li>
-                  <li><a href="#post">POST route</a></li>
-                  <li><a href="#patch">PATCH route</a></li>
-                  <li><a href="#delete">DELETE route</a></li>
-                  <li><a href="#top">HOME</a></li>
-                </ul>
-          </div>
-        </div><hr>
 
-            <div id="getone" class="nonnav"><h2> Get one report GET /reports/:id </h2>
-              <h5> This is for returning one entry from the database</h5>
-                      <p>{
-                            "report": {
-                              "_id": "581cd1e5d4024538b80408a9",
-                              "phone": 6128036431,
-                              "agent": "david",
-                              "gross_rent": 20000,
-                              "address": "1455 Laveta Terrace Los Angeles, CA 90026",
-                              "email": "jim@gmail.com",
-                              "__v": 0
-                            }
-                          }
-                        </p>
-                        <div class="masthead">
-                            <ul style="list-style: none;" class="nav nav-pills pull-right">
-                                <li><a href="#getall">GET ALL route</a></li>
-                                <li><a href="#post">POST route</a></li>
-                                <li><a href="#patch">PATCH route</a></li>
-                                <li><a href="#delete">DELETE route</a></li>
-                                <li><a href="#top">HOME</a></li>
-                              </ul>
-                        </div>
-            </div><hr>
 
               <div id="post" class="nonnav"><h2> Post a report POST /reports </h2>
                     <h5> This is for posting one entry into the database</h5>
@@ -156,58 +86,12 @@
                       </p>
                       <div class="masthead">
                           <ul style="list-style: none;" class="nav nav-pills pull-right">
-                              <li><a href="#getall">GET ALL route</a></li>
-                              <li><a href="#getone">GET ONE route</a></li>
-                              <li><a href="#patch">PATCH route</a></li>
-                              <li><a href="#delete">DELETE route</a></li>
                               <li><a href="#top">HOME</a></li>
                             </ul>
                       </div>
               </div><hr>
 
 
-              <div id="patch" class="nonnav">  <h2> Patch to a report PATCH /reports/:id </h2>
-                  <h5> This is for updating one entry from the database</h5>
-                  <p>{
-                        "message": "Report successfully updated",<br>
-                        "report": {
-                          "_id": "581cd1e5d4024538b80408a9",
-                          "phone": 6128036431,
-                          "agent": "david",
-                          "gross_rent": 20000,
-                          "address": "1455 Laveta Terrace Los Angeles, CA 90026",
-                          "email": "jim@gmail.com",
-                          "__v": 0
-                        }
-                      }
-                    </p>
-                    <div class="masthead">
-                        <ul style="list-style: none;" class="nav nav-pills pull-right">
-                            <li><a href="#getall">GET ALL route</a></li>
-                            <li><a href="#getone">GET ONE route</a></li>
-                            <li><a href="#post">POST route</a></li>
-                            <li><a href="#delete">DELETE route</a></li>
-                            <li><a href="#top">HOME</a></li>
-                          </ul>
-                    </div>
-              </div><hr>
-
-                <div id="delete" class="nonnav"><h2> Delete a report DELETE /reports/:id </h2>
-                  <h5> This is for detleting one entry in the database</h5>
-                  <p>{
-                      "message": "Report successfully deleted"
-                    }
-                  </p>
-                  <div class="masthead">
-                      <ul style="list-style: none;" class="nav nav-pills pull-right">
-                          <li><a href="#getall">GET ALL route</a></li>
-                          <li><a href="#getone">GET ONE route</a></li>
-                          <li><a href="#post">POST route</a></li>
-                          <li><a href="#patch">PATCH route</a></li>
-                          <li><a href="#top">HOME</a></li>
-                        </ul>
-                  </div>
-                </div><hr>
 
 </body>
 </html>
