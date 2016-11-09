@@ -17,8 +17,24 @@ var emailcred= (process.env.emailcred)
 var client = require('twilio')(accountSid, authToken)
 
 
+
+
 // POST one report
 function addOne (req, res, next) {
+
+  Number.prototype.formatMoney = function(c, d, t){
+  var n = this,
+      c = isNaN(c = Math.abs(c)) ? 2 : c,
+      d = d == undefined ? "." : d,
+      t = t == undefined ? "," : t,
+      s = n < 0 ? "-" : "",
+      i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+      j = (j = i.length) > 3 ? j % 3 : 0;
+     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+   };
+
+
+
   var report = new Report()
   report.email = req.body.email
   report.address = req.body.address
@@ -32,7 +48,7 @@ function addOne (req, res, next) {
   .then(client.messages.create({
     to: report.phone,
     from: twilnum,
-    body: 'Your Cash Offer is ' + egg + ' Call hot line 612-889-3535 with this code 1234 if interested'
+    body: 'Your Cash Offer is $' + egg.formatMoney + ' Call hot line 612-889-3535 with this code'+ Math.floor(Math.random()*89999+10000) +'if interested'
   }, function (err, message) {
     if (err) {
       console.log('error')
