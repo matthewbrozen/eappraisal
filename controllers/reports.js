@@ -48,7 +48,7 @@ function addOne (req, res, next) {
   .then(client.messages.create({
     to: report.phone,
     from: twilnum,
-    body: 'Your Cash Offer is $' + egg.formatMoney() + ' Call hot line 612-889-3535 with this code'+ Math.floor(Math.random()*89999+10000) +'if interested'
+    body: 'Your Cash Offer is $' + egg.formatMoney() + ' Call hot line 612-889-3535 with this code '+ Math.floor(Math.random()*89999+10000) +' if interested'
   }, function (err, message) {
     if (err) {
       console.log('error')
