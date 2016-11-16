@@ -11,6 +11,7 @@ var authToken = (process.env.authToken)
 var twilnum = (process.env.twilnum)
 var emailsetup = (process.env.emailsetup)
 var emailcred= (process.env.emailcred)
+var emailsend= (process.env.emailsend)
 
 
 // require the Twilio module and create a REST client
@@ -48,7 +49,7 @@ function addOne (req, res, next) {
   .then(client.messages.create({
     to: report.phone,
     from: twilnum,
-    body: 'Hey This is ValueEgg. Your Cash Offer is $' + egg.formatMoney() + ' Please Call hot line 612-889-3535 with this code '+ Math.floor(Math.random()*89999+10000) +' if you want cash NOW!'
+    body: 'Hey This is ValueEgg. Your Cash Offer is $' + egg.formatMoney() + ' Please Call hot line 213-216-3754 with this code '+ Math.floor(Math.random()*89999+10000) +' if you want cash NOW!'
   }, function (err, message) {
     if (err) {
       console.log('error')
@@ -67,7 +68,7 @@ function addOne (req, res, next) {
 
       var mailOptions = {
         from: 'Interested Seller <'+emailsetup+'>',
-        to: emailsetup,
+        to: emailsend,
         subject: 'You have a client interested in selling their property',
         text: 'You have a client interested in selling their property... Order: ' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + newReport.agent + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent,
         html: '<p>you have a client interested in selling their property with the following details...</p>' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent
