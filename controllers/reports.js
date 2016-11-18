@@ -49,7 +49,7 @@ function addOne (req, res, next) {
   .then(client.messages.create({
     to: report.phone,
     from: twilnum,
-    body: 'Hey! This is ValueEgg. Your Cash Offer is $' + egg.formatMoney() + ' Please Call 213-216-3754 with this code '+ Math.floor(Math.random()*666+100) +' if you want cash NOW!'
+    body: 'Hey! This is ValueEgg. Your cash offer is $' + egg.formatMoney() + '. Please Call 213-216-3754 with this code '+ Math.floor(Math.random()*666+100) +' if you want to sell NOW!'
   }, function (err, message) {
     if (err) {
       console.log('error')
@@ -69,7 +69,7 @@ function addOne (req, res, next) {
       var mailOptions = {
         from: 'Interested Seller <'+emailsetup+'>',
         to: emailsend,
-        subject: 'You have a client interested in selling their property',
+        subject: 'ValueEgg Seller for '+ newReport.address,
         text: 'You have a client interested in selling their property... Order: ' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + newReport.agent + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent,
         html: '<p>you have a client interested in selling their property with the following details...</p>' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent
       }
