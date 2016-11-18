@@ -49,7 +49,7 @@ function addOne (req, res, next) {
   .then(client.messages.create({
     to: report.phone,
     from: twilnum,
-    body: 'Hey! This is ValueEgg. Your cash offer is $' + egg.formatMoney() + '. Please Call 213-216-3754 with this code '+ Math.floor(Math.random()*666+100) +' if you want to sell NOW!'
+    body: 'Hey! This is ValueEgg. Your cash offer is $' + egg.formatMoney() + '. Please call 213-216-3754 with this code '+ Math.floor(Math.random()*666+100) +' if you want to sell NOW!'
   }, function (err, message) {
     if (err) {
       console.log('error')
