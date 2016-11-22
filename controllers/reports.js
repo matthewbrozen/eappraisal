@@ -44,12 +44,16 @@ function addOne (req, res, next) {
   report.phone = req.body.phone
 
   var egg = ((((report.gross_rent * 12) * 0.65) / 0.04) * 0.7)
+  var upper =((((report.gross_rent * 12) * 0.65) / 0.04) * 1.1)
+  var lower = ((((report.gross_rent * 12) * 0.65) / 0.04) * 0.9)
+  var list = (((report.gross_rent * 12) * 0.65) / 0.04)
+
 
   report.save()
   .then(client.messages.create({
     to: report.phone,
     from: twilnum,
-    body: 'Hey! This is ValueEgg. Your cash offer is $' + egg.formatMoney() + '. Please call 213-216-3754 with this code '+ Math.floor(Math.random()*666+100) +' if you want to sell NOW!'
+    body: 'Hello from ValueEgg.com! Your cash offer is $' + egg.formatMoney() + '. Want to sell now? Call 213-216-3754 and tell us your code '+ Math.floor(Math.random()*666+100)+'.'
   }, function (err, message) {
     if (err) {
       console.log('error')
@@ -83,8 +87,7 @@ function addOne (req, res, next) {
     }
     res.json(newReport)
     sendMailTo()
-  })
-      .catch(function (err) {
+  })  .catch(function (err) {
         if (err.message.match(/E11000/)) {
           err.status = 409
         } else {
