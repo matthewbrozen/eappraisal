@@ -40,7 +40,6 @@ function addOne (req, res, next) {
   report.email = req.body.email
   report.address = req.body.address
   report.gross_rent = req.body.gross_rent
-  report.agent = req.body.agent
   report.phone = req.body.phone
 
   var egg = ((((report.gross_rent * 12) * 0.65) / 0.04) * 0.7)
@@ -74,8 +73,8 @@ function addOne (req, res, next) {
         from: 'Interested Seller <'+emailsetup+'>',
         to: emailsend,
         subject: 'ValueEgg Seller for '+ newReport.address,
-        text: 'You have a client interested in selling their property... Order: ' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + newReport.agent + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent,
-        html: '<p>you have a client interested in selling their property with the following details...</p>' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + ', Phone number is: ' + newReport.phone + ', Agent selected is: ' + newReport.agent
+        text: 'You have a client interested in selling their property... Order: ' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + newReport.agent + ', Phone number is: ' + newReport.phone,
+        html: '<p>you have a client interested in selling their property with the following details...</p>' + ' Rent is:  ' + newReport.gross_rent + ',    Address is:   ' + newReport.address + ',    Email is:    ' + newReport.email + ', Phone number is: ' + newReport.phone
       }
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -87,7 +86,8 @@ function addOne (req, res, next) {
     }
     res.json(newReport)
     sendMailTo()
-  })  .catch(function (err) {
+  })
+  .catch(function (err) {
         if (err.message.match(/E11000/)) {
           err.status = 409
         } else {

@@ -4,7 +4,6 @@ var reportSchema = mongoose.Schema({
   email: String,
   address: String,
   gross_rent: Number,
-  agent: String,
   phone: Number
 })
 
